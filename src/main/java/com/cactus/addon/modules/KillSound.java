@@ -9,45 +9,49 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import meteordevelopment.meteorclient.events.packets.PacketEvent;
+import meteordevelopment.meteorclient.systems.friends.Friends;
+import meteordevelopment.orbit.EventHandler;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
 
 public class KillSound extends Module {
 
-    // Minecraft client instance
     private final MinecraftClient mc = MinecraftClient.getInstance();
 
-    // Setting group
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
-    // Enum setting for choosing sound
     private final Setting<KillSoundOption> killSound = sgGeneral.add(new EnumSetting.Builder<KillSoundOption>()
         .name("kill-sound")
         .description("The sound to play when you kill an entity.")
-        .defaultValue(KillSoundOption.AMETHYST)
+        .defaultValue(KillSoundOption.Amethyst_Break)
         .build());
 
-    // Integer settings for volume and pitch
     private final Setting<Integer> volume = sgGeneral.add(new IntSetting.Builder()
         .name("volume")
         .description("The volume of the kill sound.")
-        .defaultValue(100) // Volume percentage
+        .defaultValue(100)
         .min(0)
-        .max(300) // Scale it to a percentage
+        .max(300)
         .build());
 
     private final Setting<Integer> pitch = sgGeneral.add(new IntSetting.Builder()
         .name("pitch")
         .description("The pitch of the kill sound.")
-        .defaultValue(100) // Pitch percentage
+        .defaultValue(100)
         .min(0)
-        .max(200) // Scale it to a percentage
+        .max(200)
         .build());
 
-    // Enum for sound options
     public enum KillSoundOption {
-        AMETHYST(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK),
-        WITHER_DEATH(SoundEvents.ENTITY_WITHER_DEATH),
-        LEVEL_UP(SoundEvents.ENTITY_PLAYER_LEVELUP),
-        ANVIL_LAND(SoundEvents.BLOCK_ANVIL_LAND);
+        Amethyst_Break(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK),
+        Wither_Death(SoundEvents.ENTITY_WITHER_DEATH),
+        Level_Up(SoundEvents.ENTITY_PLAYER_LEVELUP),
+        Anvil_Land(SoundEvents.BLOCK_ANVIL_LAND),
+        Guardian_Curse(SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE),
+        Guardian_Death(SoundEvents.ENTITY_ELDER_GUARDIAN_DEATH);
+
 
         public final SoundEvent soundEvent;
 
@@ -60,19 +64,21 @@ public class KillSound extends Module {
         }
     }
 
-    // Constructor
     public KillSound() {
         super(AddonCactus.CATEGORY, "Kill Sound", "Plays a sound when you kill any entity.");
     }
 
-    // Method to handle playing the selected sound when a kill happens
-    public void onPlayerKill() {
-        // Play the sound for any entity kill if the module is active
-        if (this.isActive()) {
-            assert mc.player != null;
-            // Use selected sound from enum
-            SoundEvent selectedSound = killSound.get().getSoundEvent();
-            mc.player.playSound(selectedSound, volume.get() / 100.0F, pitch.get() / 100.0F); // Scale to 0-3 and 0-2
+    @EventHandler
+    private void onReceive(PacketEvent.Receive event) {
+        if (event.packet instanceof EntityStatusS2CPacket packet && (packet.getStatus() == 35 || packet.getStatus() == 3)) {
+            Entity entity = packet.getEntity(mc.world);
+            if (mc.player != null && mc.world != null && entity instanceof PlayerEntity) {
+                if (entity != mc.player && !Friends.get().isFriend((PlayerEntity) entity) &&
+                    mc.player.getPos().distanceTo(entity.getPos()) <= 25) {
+                    SoundEvent selectedSound = killSound.get().getSoundEvent();
+                    mc.player.playSound(selectedSound, volume.get() / 100.0F, pitch.get() / 100.0F);
+                }
+            }
         }
     }
 }

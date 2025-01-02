@@ -1,4 +1,4 @@
-package com.cactus.addon.settings;
+package com.cactus.addon.utils;
 
 import meteordevelopment.meteorclient.utils.player.PlayerUtils;
 import net.minecraft.entity.Entity;

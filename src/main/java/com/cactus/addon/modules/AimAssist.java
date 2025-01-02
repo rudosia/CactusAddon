@@ -1,7 +1,7 @@
 package com.cactus.addon.modules;
 
 import com.cactus.addon.AddonCactus;
-import com.cactus.addon.settings.RejectsUtils;
+import com.cactus.addon.utils.RejectsUtils;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;

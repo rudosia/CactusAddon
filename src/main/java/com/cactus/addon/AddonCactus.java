@@ -27,7 +27,6 @@ public class AddonCactus extends MeteorAddon {
         // Modules
         Modules.get().add(new KillSound());
         Modules.get().add(new Confuse());
-        Modules.get().add(new ChatBot());
         Modules.get().add(new AutoFarm());
         Modules.get().add(new AutoCope());
         Modules.get().add(new AimAssist());

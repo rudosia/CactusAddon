@@ -1,7 +1,7 @@
 package com.cactus.addon.modules;
 
 import com.cactus.addon.AddonCactus;
-import com.cactus.addon.settings.WorldUtils;
+import com.cactus.addon.utils.WorldUtils;
 import meteordevelopment.meteorclient.events.entity.player.BreakBlockEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
