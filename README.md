@@ -13,7 +13,7 @@
 
 <div>
     <p></p>
-    <p>1.21 Cactus Addon For Meteor Client 🤑</p>
+    <p>1.21 Cactus Addon For Meteor Client 🤑🌵</p>
     <p>Huge work in progress, very new project.</p>
 </div>
 
@@ -43,7 +43,6 @@
 - Aim Assist (Meteor Rejects Skid)
 - Auto Cope (Envy Client Skid)
 - AutoFarm (Meteor Rejects Skid)
-- ChatBot (Meteor Rejects Fix)
 - Confuse (Meteor Rejects Skid)
 - KillSound
 
