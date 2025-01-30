@@ -45,6 +45,8 @@
 - AutoFarm (Meteor Rejects Skid)
 - Confuse (Meteor Rejects Skid)
 - KillSound
+- Ender Pearl Velocity (Client Side Only)
+- Trade Viewer (WIP)
 
 ## HUD Elements
 
