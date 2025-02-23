@@ -22,7 +22,7 @@ public class AddonCactus extends MeteorAddon {
 
     @Override
     public void onInitialize() {
-        LOG.info("Initializing Meteor Addon Template");
+        LOG.info("Initializing Meteor Addon: Cactus Addon");
 
         // Modules
         Modules.get().add(new KillSound());
@@ -38,6 +38,7 @@ public class AddonCactus extends MeteorAddon {
 
         // HUD
         Hud.get().register(HudExample.INFO);
+        Hud.get().register(Brand.INFO);
     }
 
     @Override

@@ -8,7 +8,7 @@
     "panic"
   ],
   "contact": {
-    "repo": "https://github.com/77panic/CactusAddon"
+    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
@@ -24,10 +24,13 @@
     "meteor-client:color": "225,25,25"
   },
   "depends": {
+    "fabric": "*",
+    "fabric-api": "*",
     "java": ">=21",
     "minecraft": [
       "${mc_version}"
     ],
     "meteor-client": "*"
+
   }
 }
