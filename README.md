@@ -13,8 +13,8 @@
 
 <div>
     <p></p>
-    <p>1.21, 1.21.4 Cactus Addon For Meteor Client 🤑🌵</p>
-    <p>General Utility Addon</p>
+    <p>General Utility Addon Cactus Addon For Meteor Client 🤑🌵</p>
+    Available Versions: 1.21, 1.21.4
 </div>
 
 </div>
@@ -37,6 +37,10 @@
 - And now you have the Cactus Addon.
 
 # Info / Q&A
+
+## Available Versions
+
+1.21 (U0.1.1, U0.1.2, U0.1.3, U0.1.4), 1.21.4 (U0.1.5)
 
 ## Version Support
 
