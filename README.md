@@ -1,7 +1,5 @@
-
 <div align="center">
     <img src="https://github.com/77panic/CactusAddon/blob/main/src/main/resources/assets/template/icon.png" width="200"/>
-
 
 # Meteor Addon | Cactus Addon
 
@@ -11,78 +9,100 @@
     <img src="https://img.shields.io/github/downloads/77panic/CactusAddon/total" alt="GitHub downloads"/>
 </div>
 
-<div>
-    <p></p>
-    <p>Cactus Addon For Meteor Client 🤑🌵</p>
-    Available Versions: 1.21, 1.21.4
+<p>Cactus Addon For Meteor Client 🤑🌵</p>
+<p><strong>Available Versions:</strong> 1.21, 1.21.4</p>
 </div>
 
-</div>
-
-<br>
+---
 
 # Download
 
-## How to use | Simple Way
+<strong>How to Use (Simple Way)</strong>
 
-- Download the jar in the [Releases](https://github.com/77panic/CactusAddon/releases).
-- Put the jar in your mods folder with the Meteor Client.
-- All done, You now have a Cactus Addon.
+- Download the jar from the [Releases](https://github.com/77panic/CactusAddon/releases).
+- Place the jar in your `mods` folder along with Meteor Client.
+- Done! You now have the Cactus Addon installed.
 
-## How to use | Build Way (Must have Java with Gradlew!)
+<strong>How to Use (Build Way)</strong>
 
-- Clone this repository
-- Do `./gradlew build`
-- Now put the jar in the mods folder with the Meteor Client.
-- And now you have the Cactus Addon.
+> **Requires Java and Gradle**
+
+- Clone this repository.
+- Run `./gradlew build`.
+- Put the generated jar into your `mods` folder with Meteor Client.
+- Done! You now have the Cactus Addon built from source.
+
+---
 
 # Info / Q&A
 
-## Available Versions
+<details>
+<summary><strong>Available Versions</strong></summary>
 
-1.21 (U0.1.1, U0.1.2, U0.1.3, U0.1.4), 1.21.4 (U0.1.5)
+- **1.21**: U0.1.1, U0.1.2, U0.1.3, U0.1.4  
+- **1.21.4**: U0.1.5
 
-## Version Support
+</details>
 
-I do not plan to support multiple Minecraft versions currently, I only update to whatever Minecraft version I'm using.
-If you would like to get this addon on your version, sometimes you can just change the mod version to your own or download a version that supports your version.
+<details>
+<summary><strong>Version Support</strong></summary>
 
-## Consistent Updates
+- I do not plan to support multiple Minecraft versions, I only update to the version I'm currently using. If you'd like it on your version, try changing the mod's version in the `build.gradle`, or use a supported one.
+</details>
 
-Consistent updates aren't guaranteed. This addon is just for me to add modules I thought were cool, so basically for testing and learning.
+<details>
+<summary><strong>Consistent Updates?</strong></summary>
 
-## Why is it called the cactus addon?
+- Nope. This addon is mainly for me to test and learn by making fun modules.
+</details>
 
-cactus.
+<details>
+<summary><strong>Why is it called "Cactus Addon"?</strong></summary>
 
-## Can I fork this addon?
+- cactus.
+</details>
 
-Yes of course, just make sure to respect the Licence, Credits, and myself.
+<details>
+<summary><strong>Can I fork this addon?</strong></summary>
+
+- Yes! Just respect the license, credits, and myself.
+</details>
+
+---
 
 # Features
 
-## Modules
+<details>
+<summary><strong>Modules</strong></summary>
 
-- Aim Assist (Meteor Rejects Skid)
-- Auto Cope (Envy Client Skid)
-- AutoFarm (Meteor Rejects Skid)
-- Confuse (Meteor Rejects Skid)
+- Aim Assist *(Meteor Rejects Skid)*
+- Auto Cope *(Envy Client Skid)*
+- AutoFarm *(Meteor Rejects Skid)*
+- Confuse *(Meteor Rejects Skid)*
 - KillSound
-- Ender Pearl Velocity (Client Side Only)
-- Trade Viewer (WIP)
+- Ender Pearl Velocity *(Client Side Only)*
+- Trade Viewer *(WIP)*
 
-## HUD Elements
+</details>
+
+<details>
+<summary><strong>HUD Elements</strong></summary>
 
 - Brand
 
-## Commands
+</details>
+
+<details>
+<summary><strong>Commands</strong></summary>
 
 - No Commands
 
+</details>
+
+---
+
 # Credits
 
-[Meteor Client](https://github.com/MeteorDevelopment/meteor-client)
-
-[Meteor Rejects Addon](https://github.com/AntiCope/meteor-rejects)
-
-Envy Client (No Longer Available)
+- [Meteor Client](https://github.com/MeteorDevelopment/meteor-client)  
+- [Meteor Rejects Addon](https://github.com/AntiCope/meteor-rejects)  
+- Envy Client *(No longer available)*
