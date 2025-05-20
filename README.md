@@ -40,7 +40,7 @@
 <summary><strong>Available Versions</strong></summary>
 
 - **1.21**: U0.1.1, U0.1.2, U0.1.3, U0.1.4  
-- **1.21.4**: U0.1.5
+- **1.21.4**: U0.1.5, U0.1.6
 
 </details>
 
@@ -77,10 +77,14 @@
 
 - Aim Assist *(Meteor Rejects Skid)*
 - Auto Cope *(Envy Client Skid)*
+- Auto Dripstone
 - AutoFarm *(Meteor Rejects Skid)*
+- Chunk ESP
 - Confuse *(Meteor Rejects Skid)*
 - KillSound
 - Ender Pearl Velocity *(Client Side Only)*
+- Hitbox Desync
+- Item Spinner
 - Trade Viewer *(WIP)*
 
 </details>
@@ -95,7 +99,7 @@
 <details>
 <summary><strong>Commands</strong></summary>
 
-- No Commands
+- Teleport Command
 
 </details>
 
