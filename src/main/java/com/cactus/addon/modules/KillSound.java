@@ -26,8 +26,6 @@ public class KillSound extends Module {
         super(AddonCactus.CATEGORY, "Kill Sound", "Plays a sound when you kill any entity.");
     }
 
-    private final MinecraftClient mc = MinecraftClient.getInstance();
-
     private final Setting<Integer> activateDistance = sgGeneral.add(new IntSetting.Builder()
             .name("Activate Distance")
             .description("How far away the sound can be activated from.")
@@ -132,28 +130,30 @@ public class KillSound extends Module {
 
     @EventHandler
     private void onReceive(PacketEvent.Receive event) {
-        if (event.packet instanceof EntityStatusS2CPacket packet && packet.getStatus() == 3 && enableKillSound.get()) {
+        if (mc.world == null || mc.player == null) return;
+
+        if (event.packet instanceof EntityStatusS2CPacket packet && enableKillSound.get() && packet.getStatus() == 3) {
             Entity entity = packet.getEntity(mc.world);
-            boolean checkInFOV = !RejectsUtils.inFov(entity, 120);
-            if (inFOV.get() && checkInFOV) {return;}
-            if (mc.player != null && mc.world != null && entity instanceof PlayerEntity) {
-                if (entity != mc.player && mc.player.getPos().distanceTo(entity.getPos()) <= activateDistance.get()) {
+            if (entity instanceof PlayerEntity && entity != mc.player) {
+                if (inFOV.get() && !RejectsUtils.inFov(entity, 120)) return;
+
+                if (mc.player.distanceTo(entity) <= activateDistance.get()) {
                     SoundEvent selectedSound = killSound.get().getSoundEvent();
                     mc.player.playSound(selectedSound, killVolume.get() / 100.0F, killPitch.get() / 100.0F);
                 }
             }
         }
-        if (event.packet instanceof EntityStatusS2CPacket packet && packet.getStatus() == 35 && enableTotemSound.get()) {
+
+        if (event.packet instanceof EntityStatusS2CPacket packet && enableTotemSound.get() && packet.getStatus() == 35) {
             Entity entity = packet.getEntity(mc.world);
-            boolean checkInFOV = !RejectsUtils.inFov(entity, 120);
-            if (inFOV.get() && checkInFOV) {return;}
-            if (mc.player != null && mc.world != null && entity instanceof PlayerEntity) {
-                if (entity != mc.player && mc.player.getPos().distanceTo(entity.getPos()) <= activateDistance.get()) {
+            if (entity instanceof PlayerEntity && entity != mc.player) {
+                if (inFOV.get() && !RejectsUtils.inFov(entity, 120)) return;
+
+                if (mc.player.distanceTo(entity) <= activateDistance.get()) {
                     SoundEvent selectedSound = totemSound.get().getSoundEvent();
                     mc.player.playSound(selectedSound, totemVolume.get() / 100.0F, totemPitch.get() / 100.0F);
                 }
             }
         }
     }
-
 }

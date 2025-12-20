@@ -29,9 +29,8 @@ public class AddonCactus extends MeteorAddon {
         Modules.get().add(new Confuse());
         Modules.get().add(new AutoFarm());
         Modules.get().add(new AutoCope());
+        Modules.get().add(new AutoEZ());
         Modules.get().add(new AimAssist());
-        Modules.get().add(new TradeViewer());
-        Modules.get().add(new EnderPearlVelocity());
         Modules.get().add(new ChunkESP());
         Modules.get().add(new ItemSpiner());
         Modules.get().add(new AutoDripstone());

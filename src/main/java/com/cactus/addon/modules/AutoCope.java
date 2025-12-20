@@ -11,6 +11,7 @@ import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 import java.util.Objects;

@@ -10,8 +10,7 @@
 </div>
 
 <p>Cactus Addon For Meteor Client 🤑🌵</p>
-<p><strong>Available Versions:</strong> 1.21, 1.21.4</p>
-<p><sup>Edit: Working with Java sucks, so I get burnt out on pushing updates, sorry! But thank you guys for 200+ downloads!!!!! 🥳🥳🥳</sup></p>
+<p><strong>Available Versions:</strong> 1.21, 1.21.4, 1.21.10</p>
 </div>
 
 ---
@@ -42,6 +41,7 @@
 
 - **1.21**: U0.1.1, U0.1.2, U0.1.3, U0.1.4  
 - **1.21.4**: U0.1.5, U0.1.6
+- **1.21.10**: U0.1.7
 
 </details>
 
@@ -76,17 +76,16 @@
 <details>
 <summary><strong>Modules</strong></summary>
 
-- Aim Assist *(Meteor Rejects Skid)*
-- Auto Cope *(Envy Client Skid)*
+- Aim Assist
+- Auto Cope
 - Auto Dripstone
-- AutoFarm *(Meteor Rejects Skid)*
+- Auto EZ
+- AutoFarm
 - Chunk ESP
-- Confuse *(Meteor Rejects Skid)*
+- Confuse
 - KillSound
-- Ender Pearl Velocity *(Client Side Only)*
 - Hitbox Desync
 - Item Spinner
-- Trade Viewer *(WIP)*
 
 </details>
 
@@ -108,6 +107,9 @@
 
 # Credits
 
+*i steal code and review stuff from them so thanks*
+
 - [Meteor Client](https://github.com/MeteorDevelopment/meteor-client)  
-- [Meteor Rejects Addon](https://github.com/AntiCope/meteor-rejects)  
+- [Meteor Rejects Addon](https://github.com/AntiCope/meteor-rejects)
+- [BlackOut Addon](https://github.com/KassuK1/BlackOut)  
 - Envy Client *(No longer available)*

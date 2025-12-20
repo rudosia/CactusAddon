@@ -110,19 +110,17 @@ public class Confuse extends Module {
 
     @EventHandler
     private void onTick(TickEvent.Pre event) {
-
         delayWaited++;
         if (delayWaited < delay.get()) return;
         delayWaited = 0;
 
-
         target = TargetUtils.getPlayerTarget(range.get(), priority.get());
-
         if (target == null) return;
 
-        Vec3d entityPos = target.getPos();
+        Vec3d entityPos = new Vec3d(target.getX(), target.getY(), target.getZ());
         assert mc.player != null;
-        Vec3d playerPos = mc.player.getPos();
+        Vec3d playerPos = new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ());
+        
         Random r = new Random();
         BlockHitResult hit;
         int halfRange = range.get() / 2;
@@ -136,11 +134,11 @@ public class Confuse extends Module {
                 Vec3d goal = entityPos.add(addend);
                 assert mc.world != null;
                 if (mc.world.getBlockState(BlockPos.ofFloored(goal.x, goal.y, goal.z)).getBlock() != Blocks.AIR) {
-                    goal = new Vec3d(x, playerPos.y, z);
+                    goal = new Vec3d(entityPos.x + x, playerPos.y, entityPos.z + z);
                 }
                 if (mc.world.getBlockState(BlockPos.ofFloored(goal.x, goal.y, goal.z)).getBlock() == Blocks.AIR) {
-                    hit = mc.world.raycast(new RaycastContext(mc.player.getPos(), goal, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
-                    if (!moveThroughBlocks.get() && hit.isInsideBlock()) {
+                    hit = mc.world.raycast(new RaycastContext(playerPos, goal, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
+                    if (!moveThroughBlocks.get() && hit.getType() != BlockHitResult.Type.MISS) {
                         delayWaited = (int) (delay.get() - 1);
                         break;
                     }
@@ -155,8 +153,8 @@ public class Confuse extends Module {
                 Vec3d diff1 = new Vec3d(MathHelper.clamp(diff.x, -halfRange, halfRange), MathHelper.clamp(diff.y, -halfRange, halfRange), MathHelper.clamp(diff.z, -halfRange, halfRange));
                 Vec3d goal2 = entityPos.add(diff1);
                 assert mc.world != null;
-                hit = mc.world.raycast(new RaycastContext(mc.player.getPos(), goal2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
-                if (!moveThroughBlocks.get() && hit.isInsideBlock()) {
+                hit = mc.world.raycast(new RaycastContext(playerPos, goal2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
+                if (!moveThroughBlocks.get() && hit.getType() != BlockHitResult.Type.MISS) {
                     delayWaited = (int) (delay.get() - 1);
                     break;
                 }
@@ -164,7 +162,6 @@ public class Confuse extends Module {
                 break;
 
             case Circle:
-                delay.set(0);
                 circleProgress += circleSpeed.get();
                 if (circleProgress > 360) circleProgress -= 360;
                 double rad = Math.toRadians(circleProgress);
@@ -172,8 +169,8 @@ public class Confuse extends Module {
                 double cos = Math.cos(rad) * 3;
                 Vec3d current = new Vec3d(entityPos.x + sin, playerPos.y, entityPos.z + cos);
                 assert mc.world != null;
-                hit = mc.world.raycast(new RaycastContext(mc.player.getPos(), current, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
-                if (!moveThroughBlocks.get() && hit.isInsideBlock())
+                hit = mc.world.raycast(new RaycastContext(playerPos, current, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, mc.player));
+                if (!moveThroughBlocks.get() && hit.getType() != BlockHitResult.Type.MISS)
                     break;
                 mc.player.updatePosition(current.x, current.y, current.z);
                 break;
@@ -188,19 +185,22 @@ public class Confuse extends Module {
         Vec3d last = null;
         addition += flag ? 0 : 1.0;
         if (addition > 360) addition = 0;
+        
+        Vec3d tp = new Vec3d(target.getX(), target.getY(), target.getZ());
+        
         for (int i = 0; i < 360; i += flag ? 7 : 1) {
             Color c1;
             if (flag) c1 = circleColor.get();
             else {
                 double rot = (255.0 * 3) * (((((double) i) + addition) % 360) / 360.0);
                 int seed = (int) Math.floor(rot / 255.0);
-                double current = rot % 255;
-                double red = seed == 0 ? current : (seed == 1 ? Math.abs(current - 255) : 0);
-                double green = seed == 1 ? current : (seed == 2 ? Math.abs(current - 255) : 0);
-                double blue = seed == 2 ? current : (seed == 0 ? Math.abs(current - 255) : 0);
+                double curr = rot % 255;
+                double red = seed == 0 ? curr : (seed == 1 ? Math.abs(curr - 255) : 0);
+                double green = seed == 1 ? curr : (seed == 2 ? Math.abs(curr - 255) : 0);
+                double blue = seed == 2 ? curr : (seed == 0 ? Math.abs(curr - 255) : 0);
                 c1 = new Color((int) red, (int) green, (int) blue);
             }
-            Vec3d tp = target.getPos();
+            
             double rad = Math.toRadians(i);
             double sin = Math.sin(rad) * 3;
             double cos = Math.cos(rad) * 3;

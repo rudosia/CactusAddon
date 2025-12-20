@@ -13,6 +13,7 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Vec3d;
 
 public class ChunkESP extends Module {
 
@@ -37,25 +38,26 @@ public class ChunkESP extends Module {
     );
     
 
-    @EventHandler
-    private void onRender3D(Render3DEvent event) {
-        if (mc.player == null || mc.world == null) return;
+@EventHandler
+private void onRender3D(Render3DEvent event) {
+    if (mc.player == null || mc.world == null) return;
 
-        BlockPos playerPos = mc.player.getBlockPos();
-        ChunkPos chunkPos = new ChunkPos(playerPos);
+    BlockPos playerPos = mc.player.getBlockPos();
+    ChunkPos chunkPos = new ChunkPos(playerPos);
 
-        int chunkX = chunkPos.x * 16;
-        int chunkZ = chunkPos.z * 16;
-        double minY = mc.world.getBottomY();
-        double maxY = mc.world.getTopY();
+    int chunkX = chunkPos.x * 16;
+    int chunkZ = chunkPos.z * 16;
+    
+    double minY = mc.world.getBottomY();
+    double maxY = mc.world.getTopYInclusive();
 
-        Box chunkBox = new Box(chunkX, minY, chunkZ, chunkX + 16, maxY, chunkZ + 16);
+    Box chunkBox = new Box(chunkX, minY, chunkZ, chunkX + 16, maxY, chunkZ + 16);
 
-        event.renderer.box(chunkBox, lineColor.get(), lineColor.get(), ShapeMode.Lines, 0);
+    event.renderer.box(chunkBox, lineColor.get(), lineColor.get(), ShapeMode.Lines, 0);
 
-        if (drawTop.get()) {
-            event.renderer.box(new Box(chunkX, maxY - 0.1, chunkZ, chunkX + 16, maxY, chunkZ + 16),
-                    lineColor.get(), lineColor.get(), ShapeMode.Lines, 0);
-        }
+    if (drawTop.get()) {
+        event.renderer.box(new Box(chunkX, maxY - 0.1, chunkZ, chunkX + 16, maxY, chunkZ + 16),
+                lineColor.get(), lineColor.get(), ShapeMode.Lines, 0);
     }
+}
 }
