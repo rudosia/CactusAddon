@@ -31,6 +31,7 @@ public class AddonCactus extends MeteorAddon {
         Modules.get().add(new AutoCope());
         Modules.get().add(new AutoEZ());
         Modules.get().add(new AimAssist());
+        Modules.get().add(new AutoSell());
         Modules.get().add(new ChunkESP());
         Modules.get().add(new ItemSpiner());
         Modules.get().add(new AutoDripstone());
@@ -38,6 +39,7 @@ public class AddonCactus extends MeteorAddon {
 
         // Commands
         Commands.add(new CommandExample());
+        Commands.add(new CopyCoordinates());
         Commands.add(new Teleport());
 
         // HUD
